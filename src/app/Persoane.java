@@ -12,7 +12,7 @@ public class Persoane {
         public String address;
 
 
-        public String Descriere() {
+        public String descriere() {
             String text="";
             text+="Id : "+this.id+"\n";
             text+="Name : "+this.name+"\n";
@@ -20,7 +20,6 @@ public class Persoane {
             text+="Gender : "+this.gender+"\n";
             text+="Address : "+this.address+"\n";
             return text;
-
         }
 
     }
