@@ -114,7 +114,45 @@ public class PersoaneService {
         return filtrate;
     }
 
+    public void adaugarePersoana(Persoane persoana){
+        for(Persoane p : persoane) {
+            if(p.id == persoana.id){
+                System.out.println("id ul exista deja");
+            }
+        }
+        persoane.add(persoana);
+        System.out.println("persoana adaugata");
+    }
 
+    public boolean stergePersoana (int id){
+        for(int i=0; i<persoane.size(); i++){
+            if(persoane.get(i).id == id){
+                persoane.remove(i);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean editarePersoane(int id, Persoane persoana) {
+        for(int i=0; i<persoane.size(); i++){
+            if(persoane.get(i).id == id){
+                persoana.id=id;
+                persoane.set(i,persoana);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Persoane cautareDupaID(int id) {
+        for(int i=0; i<persoane.size(); i++){
+            if(persoane.get(i).id == id){
+                return persoane.get(i);
+            }
+        }
+        return null;
+    }
     }
 
 
