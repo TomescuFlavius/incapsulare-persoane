@@ -107,16 +107,16 @@ public class PersoaneService {
     public List<Persoane> filtrareDupaGen(Filtrare filtrare) {
         List<Persoane> filtrate = new ArrayList<>();
         for (int i = 0; i < persoane.size(); i++) {
-            if(persoane.get(i).gender.equals(filtrare.gen)){
+            if (persoane.get(i).gender.equals(filtrare.gen)) {
                 filtrate.add(persoane.get(i));
             }
         }
         return filtrate;
     }
 
-    public void adaugarePersoana(Persoane persoana){
-        for(Persoane p : persoane) {
-            if(p.id == persoana.id){
+    public void adaugarePersoana(Persoane persoana) {
+        for (Persoane p : persoane) {
+            if (p.id == persoana.id) {
                 System.out.println("id ul exista deja");
             }
         }
@@ -124,9 +124,9 @@ public class PersoaneService {
         System.out.println("persoana adaugata");
     }
 
-    public boolean stergePersoana (int id){
-        for(int i=0; i<persoane.size(); i++){
-            if(persoane.get(i).id == id){
+    public boolean stergePersoana(int id) {
+        for (int i = 0; i < persoane.size(); i++) {
+            if (persoane.get(i).id == id) {
                 persoane.remove(i);
                 return true;
             }
@@ -135,10 +135,10 @@ public class PersoaneService {
     }
 
     public boolean editarePersoane(int id, Persoane persoana) {
-        for(int i=0; i<persoane.size(); i++){
-            if(persoane.get(i).id == id){
-                persoana.id=id;
-                persoane.set(i,persoana);
+        for (int i = 0; i < persoane.size(); i++) {
+            if (persoane.get(i).id == id) {
+                persoana.id = id;
+                persoane.set(i, persoana);
                 return true;
             }
         }
@@ -146,14 +146,47 @@ public class PersoaneService {
     }
 
     public Persoane cautareDupaID(int id) {
-        for(int i=0; i<persoane.size(); i++){
-            if(persoane.get(i).id == id){
+        for (int i = 0; i < persoane.size(); i++) {
+            if (persoane.get(i).id == id) {
                 return persoane.get(i);
             }
         }
         return null;
     }
+
+    public List<Persoane> cautareDupaNume(String nume) {
+        List<Persoane> persoanesCuAcelasiNume = new ArrayList<>();
+        for (Persoane p : persoanesCuAcelasiNume) {
+            if (p.name.equalsIgnoreCase(nume)) {
+                persoanesCuAcelasiNume.add(p);
+            }
+        }
+        return persoanesCuAcelasiNume;
     }
+
+    public double calculMedieVarsta() {
+        int s = 0;
+        for (int i = 0; i < persoane.size(); i++) {
+            s = s + persoane.get(i).age;
+        }
+        return s / persoane.size();
+    }
+
+    public void adaugarePersoanaCuIdNou(Persoane persoana) {
+        int maxId = 0;
+        if(!persoane.isEmpty()) {
+            for (Persoane p : persoane) {
+                if (p.id > maxId) {
+                    maxId = p.id;
+                }
+            }
+        }
+
+        persoana.id=maxId+1;
+        persoane.add(persoana);
+        System.out.println("persoana adaugata"+persoana.id);
+    }
+}
 
 
 
