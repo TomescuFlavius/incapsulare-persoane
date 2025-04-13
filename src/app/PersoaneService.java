@@ -1,52 +1,64 @@
 package app;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 
 public class PersoaneService {
-    List<Persoane> persoane = new ArrayList<Persoane>();
-
-    public void load() {
-        Persoane persoane1 = new Persoane();
-        persoane1.id = 1;
-        persoane1.name = "Alex";
-        persoane1.age = 18;
-        persoane1.gender = "male";
-        persoane1.address = "A1";
-
-        Persoane persoane2 = new Persoane();
-        persoane2.id = 2;
-        persoane2.name = "Andreea";
-        persoane2.age = 25;
-        persoane2.gender = "female";
-        persoane2.address = "B2";
-
-        Persoane persoane3 = new Persoane();
-        persoane3.id = 3;
-        persoane3.name = "Andrei";
-        persoane3.age = 23;
-        persoane3.gender = "male";
-        persoane3.address = "C3";
-
-        Persoane persoane4 = new Persoane();
-        persoane4.id = 4;
-        persoane4.name = "Alex";
-        persoane4.age = 48;
-        persoane4.gender = "male";
-        persoane4.address = "B7";
-
-        this.persoane.add(persoane1);
-        this.persoane.add(persoane2);
-        this.persoane.add(persoane3);
-        this.persoane.add(persoane4);
+    private List<Persoane> persoane;
+    private File file;
+    public PersoaneService() {
+        persoane = new ArrayList<>();
+        this.file = new File("persoane.txt");
+        this.loadPersoane();
     }
 
+    private void loadPersoane(){
+        try{
+            Scanner scanner = new Scanner(file);
+            while(scanner.hasNextLine()){
+                String line = scanner.nextLine();
+                Persoane persoane = new Persoane(line);
+                this.persoane.add(persoane);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    public String toSavePersoane() {
+        String text = "";
+        int i;
+        for (i = 0; i < this.persoane.size()-1; i++) {
+            text += persoane.get(i).descriere() + "\n";
+        }
+        return text += persoane.get(i).descriere();
+    }
 
+    public void savePersoane() {
+        try {
+            FileWriter writer = new FileWriter(file);
+            PrintWriter printWriter = new PrintWriter(writer);
+            printWriter.print(toSavePersoane());
+            printWriter.close();
+
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
     public void afisarePersoane() {
         for (int i = 0; i < persoane.size(); i++) {
             System.out.println(this.persoane.get(i).descriere());
         }
+    }
+
+    public void addPersoana(Persoane persoana) {
+        this.persoane.add(persoana);
     }
 
     public void tanarBatranSort() {
@@ -68,7 +80,7 @@ public class PersoaneService {
 
     public void persoaneMajore() {
         for (int i = 0; i < persoane.size(); i++) {
-            if (persoane.get(i).age > 18) {
+            if (persoane.get(i) > 18) {
                 System.out.println(persoane.get(i).descriere());
             }
         }
@@ -153,7 +165,7 @@ public class PersoaneService {
         }
         return null;
     }
-
+//todo:
     public List<Persoane> cautareDupaNume(String nume) {
         List<Persoane> persoanesCuAcelasiNume = new ArrayList<>();
         for (Persoane p : persoanesCuAcelasiNume) {

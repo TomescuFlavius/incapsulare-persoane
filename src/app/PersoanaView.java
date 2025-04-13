@@ -6,11 +6,15 @@ import java.util.Scanner;
 
 
 public class PersoanaView {
-    public PersoaneService persoanaService = new PersoaneService();
-    public Scanner scanner = new Scanner(System.in);
+    private PersoaneService persoanaService = new PersoaneService();
+    private Scanner scanner = new Scanner(System.in);
     Filtrare filtrare = new Filtrare();
-
-    public void meniu() {
+    public PersoanaView() {
+        this.persoanaService = new PersoaneService();
+        this.scanner = new Scanner(System.in);
+        this.play();
+    }
+    private void meniu() {
         System.out.println("1->Afisare Persoane");
         System.out.println("2->Sortare functie de varsta");
         System.out.println("3->Filtrare dupa varsta");
@@ -26,7 +30,7 @@ public class PersoanaView {
 
     public void play() {
         boolean running = true;
-        this.persoanaService.load();
+
         while (running) {
             meniu();
             int alegere = Integer.parseInt(scanner.nextLine());
@@ -199,6 +203,7 @@ public class PersoanaView {
         String gen = scanner.nextLine();
         System.out.println("Introduceti adresa:");
         String address = scanner.nextLine();
+
         persoane1.name = name;
         persoane1.age = age;
         persoane1.gender = gen;
