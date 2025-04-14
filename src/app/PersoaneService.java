@@ -66,7 +66,7 @@ public class PersoaneService {
         Persoane minimV = new Persoane();
 
         for (int i = 0; i < persoane.size(); i++) {
-            if (persoane.get(i).age > minimV.age) {
+            if (persoane.get(i).getAge() > minimV.getAge()) {
                 System.out.println(persoane.get(i).descriere());
             }
         }
@@ -75,7 +75,7 @@ public class PersoaneService {
     public void maximVarsta() {
         Persoane maximV = new Persoane();
         for (int i = 0; i < persoane.size(); i++) {
-            if (persoane.get(i).age > maximV.age) {
+            if (persoane.get(i).getAge() > maximV.getAge()) {
                 System.out.println(persoane.get(i).descriere());
             }
         }
@@ -84,7 +84,7 @@ public class PersoaneService {
     public List<Persoane> filtrareDupaVarsta(Filtrare filtrare) {
         List<Persoane> filtrate = new ArrayList<>();
         for (int i = 0; i < persoane.size(); i++) {
-            if (persoane.get(i).age >= filtrare.minAge && persoane.get(i).age <= filtrare.maxAge) {
+            if (persoane.get(i).getAge() >= filtrare.minAge && persoane.get(i).getAge() <= filtrare.maxAge) {
                 filtrate.add(persoane.get(i));
             }
         }
@@ -95,7 +95,7 @@ public class PersoaneService {
     public List<Persoane> filtrareDupaGen(Filtrare filtrare) {
         List<Persoane> filtrate = new ArrayList<>();
         for (int i = 0; i < persoane.size(); i++) {
-            if (persoane.get(i).gender.equals(filtrare.gen)) {
+            if (persoane.get(i).getGender().equals(filtrare.gen)) {
                 filtrate.add(persoane.get(i));
             }
         }
@@ -104,7 +104,7 @@ public class PersoaneService {
 
     public void adaugarePersoana(Persoane persoana) {
         for (Persoane p : persoane) {
-            if (p.id == persoana.id) {
+            if (p.getId() == persoana.getId()) {
                 System.out.println("id ul exista deja");
             }
         }
@@ -114,7 +114,7 @@ public class PersoaneService {
 
     public boolean stergePersoana(int id) {
         for (int i = 0; i < persoane.size(); i++) {
-            if (persoane.get(i).id == id) {
+            if (persoane.get(i).getId() == id) {
                 persoane.remove(i);
                 return true;
             }
@@ -124,8 +124,8 @@ public class PersoaneService {
 
     public boolean editarePersoane(int id, Persoane persoana) {
         for (int i = 0; i < persoane.size(); i++) {
-            if (persoane.get(i).id == id) {
-                persoana.id = id;
+            if (persoane.get(i).getId() == id) {
+                persoana.setId = id;
                 persoane.set(i, persoana);
                 return true;
             }
@@ -135,7 +135,7 @@ public class PersoaneService {
 
     public Persoane cautareDupaID(int id) {
         for (int i = 0; i < persoane.size(); i++) {
-            if (persoane.get(i).id == id) {
+            if (persoane.get(i).getId() == id) {
                 return persoane.get(i);
             }
         }
@@ -145,7 +145,7 @@ public class PersoaneService {
     public List<Persoane> cautareDupaNume(String nume) {
         List<Persoane> persoanesCuAcelasiNume = new ArrayList<>();
         for (Persoane p : persoanesCuAcelasiNume) {
-            if (p.name.equalsIgnoreCase(nume)) {
+            if (p.getName().equalsIgnoreCase(nume)) {
                 persoanesCuAcelasiNume.add(p);
             }
         }
@@ -155,7 +155,7 @@ public class PersoaneService {
     public double calculMedieVarsta() {
         int s = 0;
         for (int i = 0; i < persoane.size(); i++) {
-            s = s + persoane.get(i).age;
+            s = s + persoane.get(i).getAge();
         }
         return s / persoane.size();
     }
@@ -164,15 +164,15 @@ public class PersoaneService {
         int maxId = 0;
         if(!persoane.isEmpty()) {
             for (Persoane p : persoane) {
-                if (p.id > maxId) {
-                    maxId = p.id;
+                if (p.getId() > maxId) {
+                    maxId = p.getId();
                 }
             }
         }
 
-        persoana.id=maxId+1;
+        persoana.setId()=maxId+1;
         persoane.add(persoana);
-        System.out.println("persoana adaugata"+persoana.id);
+        System.out.println("persoana adaugata"+persoana.getId());
 
 
     }
