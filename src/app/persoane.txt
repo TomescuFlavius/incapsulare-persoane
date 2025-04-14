@@ -1,0 +1,4 @@
+1 Ana 20 female A1
+2 Marian 12 male B1
+3 Alex 19 male A4
+5 Andrei 21 male C1

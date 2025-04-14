@@ -14,7 +14,7 @@ public class PersoaneService {
     private File file;
     public PersoaneService() {
         persoane = new ArrayList<>();
-        this.file = new File("persoane.txt");
+        this.file = new File("C:\\mycode\\oop\\incapsulare\\incapsulare-persoane\\src\\app\\persoane.txt");
         this.loadPersoane();
     }
 
@@ -61,30 +61,6 @@ public class PersoaneService {
         this.persoane.add(persoana);
     }
 
-    public void tanarBatranSort() {
-
-        for (int i = 0; i < persoane.size() - 1; i++) {
-            for (int j = 0; j < persoane.size() - i - 1; j++) {
-                if (persoane.get(j).age > persoane.get(j + 1).age) {
-                    Persoane temp = persoane.get(j);
-                    persoane.set(j, persoane.get(j + 1));
-                    persoane.set(j + 1, temp);
-                }
-
-            }
-        }
-        for (int i = 0; i < persoane.size(); i++) {
-            System.out.println(this.persoane.get(i).descriere());
-        }
-    }
-
-    public void persoaneMajore() {
-        for (int i = 0; i < persoane.size(); i++) {
-            if (persoane.get(i) > 18) {
-                System.out.println(persoane.get(i).descriere());
-            }
-        }
-    }
 
     public void minimVarsta() {
         Persoane minimV = new Persoane();
@@ -197,7 +173,12 @@ public class PersoaneService {
         persoana.id=maxId+1;
         persoane.add(persoana);
         System.out.println("persoana adaugata"+persoana.id);
+
+
     }
+
+
+
 }
 
 
